@@ -1,0 +1,22 @@
+name: Deploy demo
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, docker]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build image
+        run: |
+          docker build -t demo-tomcat:latest .
+
+      - name: Restart container
+        run: |
+          cd /srv/docker/stacks/apps/demo
+          docker compose up -d
