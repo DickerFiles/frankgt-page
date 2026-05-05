@@ -1,5 +1,4 @@
-name: Deploy demo
-
+name: Deploy
 on:
   push:
     branches: [ "main" ]
@@ -14,9 +13,13 @@ jobs:
 
       - name: Build image
         run: |
-          docker build -t demo-tomcat:latest .
+          docker build -t ecommerce-tomcat:latest .
+
+      - name: Clean up old images
+        run: |
+          docker image prune -f
 
       - name: Restart container
         run: |
-          cd /srv/docker/stacks/apps/demo
-          docker compose up -d
+          cd /srv/docker/stacks/apps/ecommerce_web
+          docker compose up -d --force-recreate
