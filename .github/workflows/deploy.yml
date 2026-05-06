@@ -14,9 +14,11 @@ jobs:
 
       - name: Build image
         run: |
-          docker build -t demo-tomcat:latest .
+          docker build -t frank:latest .
 
-      - name: Restart container
+      - name: Deploy
         run: |
-          cd /srv/docker/stacks/apps/demo
+          mkdir -p /srv/docker/stacks/apps/frank
+          cp docker-compose.yml /srv/docker/stacks/apps/frank/docker-compose.yml
+          cd /srv/docker/stacks/apps/frank
           docker compose up -d

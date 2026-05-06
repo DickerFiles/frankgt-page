@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+
+  frank:
+
+    image: frank:latest
+
+    container_name: frank
+
+    restart: unless-stopped
+
+    networks:
+
+      - apps
+
+networks:
+
+  apps:
+
+    external: true
