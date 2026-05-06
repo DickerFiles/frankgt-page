@@ -13,24 +13,11 @@ jobs:
 
       - name: Build image
         run: |
-<<<<<<< HEAD
           docker build -t frank:latest .
-=======
-          docker build -t ecommerce-tomcat:latest .
-
-      - name: Clean up old images
-        run: |
-          docker image prune -f
->>>>>>> b8d7df39a5b4ef91c80ae9a0db16b6d796b170f2
 
       - name: Deploy
         run: |
-<<<<<<< HEAD
           mkdir -p /srv/docker/stacks/apps/frank
           cp docker-compose.yml /srv/docker/stacks/apps/frank/docker-compose.yml
           cd /srv/docker/stacks/apps/frank
           docker compose up -d
-=======
-          cd /srv/docker/stacks/apps/ecommerce_web
-          docker compose up -d --force-recreate
->>>>>>> b8d7df39a5b4ef91c80ae9a0db16b6d796b170f2
